@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "MoleculerJS",
+      "authorEmail": "hello@moleculer.services",
+      "authorUrl": "https://moleculer.services"
+    }
+  }
+}
