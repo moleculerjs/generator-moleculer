@@ -1,3 +1,5 @@
+![Moleculer logo](http://moleculer.services/images/banner.png)
+
 # Moleculer project generator [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > Create a new Moleculer microservices project
 
@@ -17,9 +19,21 @@ yo moleculer moleculer-demo
 ```
 
 ## Features
+- Moleculer v0.12.x with `moleculer.config.js`
+- Common project with a demo `greeter` service
+- Optional API Gateway service
+- Optional Transporter & Cacher
+- Docker & Docker Compose files
+- Unit tests with [Jest](http://facebook.github.io/jest/)
+- Lint with [ESLint](http://eslint.org/)
+- Launch file for debugging in [VSCode](https://code.visualstudio.com/)
 
-
-## Options
+## NPM scripts
+- `npm run dev` - Start service.js with hot-reload and start REPL
+- `npm run lint` - Run ESLint
+- `npm run ci` - Start testing in watch mode
+- `npm start` - Start services in production mode
+- `npm test` - Run tests & coverage
 
 ## Getting To Know Yeoman
 
