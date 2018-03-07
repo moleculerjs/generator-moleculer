@@ -1,5 +1,5 @@
-# generator-moleculer [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Generator to create a Moleculer microservices project
+# Moleculer project generator [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+> Create a new Moleculer microservices project
 
 ## Installation
 
@@ -10,11 +10,16 @@ npm install -g yo
 npm install -g generator-moleculer
 ```
 
-Then generate your new project:
+Then generate your new Moleculer project (moleculer-demo):
 
 ```bash
-yo moleculer
+yo moleculer moleculer-demo
 ```
+
+## Features
+
+
+## Options
 
 ## Getting To Know Yeoman
 

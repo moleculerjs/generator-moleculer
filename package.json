@@ -1,7 +1,7 @@
 {
   "name": "generator-moleculer",
-  "version": "0.0.0",
-  "description": "Generator to create a Moleculer microservices project",
+  "version": "0.1.0",
+  "description": "Moleculer microservices project",
   "homepage": "https://moleculer.services",
   "author": {
     "name": "MoleculerJS",
@@ -32,8 +32,11 @@
     "jest": "^22.0.6"
   },
   "dependencies": {
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "glob": "7.1.2",
+    "lodash": "4.17.5",
+    "minimatch": "3.0.4",
+    "yeoman-generator": "^2.0.1",
     "yosay": "^2.0.1"
   },
   "jest": {
@@ -69,7 +72,7 @@
         "error",
         {
           "singleQuote": true,
-          "printWidth": 90
+          "printWidth": 120
         }
       ]
     },

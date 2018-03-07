@@ -5,5 +5,16 @@
       "authorEmail": "hello@moleculer.services",
       "authorUrl": "https://moleculer.services"
     }
+  },
+  "generator-moleculer": {
+    "promptValues": {
+      "apiGW": true,
+      "needTransporter": true,
+      "transporter": "NATS",
+      "needCacher": false,
+      "docker": true,
+      "lint": true,
+      "jest": true
+    }
   }
 }
