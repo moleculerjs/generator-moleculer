@@ -7,14 +7,14 @@ module.exports = {
 	logger: true,
 	logLevel: "info",
 	logFormatter: "default",
-	{{#needTransporter}}
+	<% if (needTransporter) { %>
 
 	transporter: "{{transporter}}",
-	{{/needTransporter}}
-	{{#needCacher}}
+	<% } %>
+	<% if (needCacher) { %>
 
 	cacher: "{{cacher}}",
-	{{/needCacher}}
+	<% } %>
 
 	serializer: "JSON",
 
@@ -55,7 +55,7 @@ module.exports = {
 
 	// Called after broker created.
 	created(broker) {
-		
+
 	},
 
 	// Called after broker starte.

@@ -20,6 +20,8 @@ module.exports = class extends Generator {
       desc: 'Name of application'
     });
 
+    this.option('install', { required: false, type: Boolean, default: false });
+
     // And you can then access it later; e.g.
     // this.log(this.options.appname);
   }
@@ -42,12 +44,12 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    // This.fs.copy(this.templatePath('dummyfile.txt'), this.destinationPath('dummyfile.txt'));
-    let files = glob.sync(path.join(this.sourceRoot(), '**', '*'));
+    let files = glob.sync(path.join(this.sourceRoot(), '**', '*'), { nodir: true });
 
     Object.keys(meta.filters).forEach(f => {
-      files = files.map(file => {
-        if (match(file, f, { dot: true })) {
+      files = files.filter(file => {
+        const relPath = path.relative(this.sourceRoot(), file);
+        if (match(relPath, f, { dot: true })) {
           const condition = meta.filters[f];
           return this._evaluate(condition, this.props);
         }
@@ -55,11 +57,18 @@ module.exports = class extends Generator {
       });
     });
 
-    this.log(files);
+    // This.log("Filtered", files);
+    // this.log("Destination:", this.destinationRoot());
 
+    // console.log("Props:", this.props);
     files.forEach(file => {
-      const relPath = path.relative(this.sourceRoot, file);
-      this.fs.copyTpl(file, this.destinationPath(relPath), this.props);
+      const relPath = path.relative(this.sourceRoot(), file);
+      if (['.png', '.jpg', '.gif', '.ico'].indexOf(path.extname(file).toLowerCase()) === -1) {
+        // This.log(`Copy '${file}' to '${this.destinationPath(relPath)}'`);
+        this.fs.copyTpl(file, this.destinationPath(relPath), this.props);
+      } else {
+        // This.log(`Skip '${file}'`);
+      }
     });
   }
 
@@ -82,6 +91,6 @@ module.exports = class extends Generator {
   // }
 
   install() {
-    this.installDependencies({ bower: false });
+    if (this.options.install) this.installDependencies({ bower: false, npm: true });
   }
 };

@@ -1,13 +1,13 @@
 {
-  "name": "{{projectName}}",
+  "name": "<%=projectName %>",
   "version": "1.0.0",
   "description": "My Moleculer microservices project",
   "scripts": {
     "dev": "moleculer-runner --repl --hot services",
-    "start": "moleculer-runner"{{#jest}},
+    "start": "moleculer-runner"<% if (jest) { %>,
     "ci": "jest --watch",
-    "test": "jest --coverage"{{/jest}}{{#lint}},
-    "lint": "eslint services"{{/lint}}
+    "test": "jest --coverage"<% } %><% if (lint) { %>,
+    "lint": "eslint services"<% } %>
   },
   "keywords": [
     "microservices",
@@ -15,42 +15,42 @@
   ],
   "author": "",
   "devDependencies": {
-    {{#lint}}
+    <% if (lint) { %>
     "eslint": "^4.18.2",
-    {{/lint}}
-    {{#jest}}
+    <% } %>
+    <% if (jest) { %>
     "jest": "^22.4.2",
     "jest-cli": "^22.4.2",
-    {{/jest}}
+    <% } %>
     "moleculer-repl": "^0.4.0"
   },
   "dependencies": {
-    {{#apiGW}}
+    <% if (apiGW) { %>
     "moleculer-web": "^0.6.0",
-    {{/apiGW}}
-    {{#if_eq transporter "NATS"}}
+    <% } %>
+    <% if (transporter == "NATS") { %>
     "nats": "^0.8.2",
-    {{/if_eq}}
-    {{#if_eq transporter "MQTT"}}
+    <% } %>
+    <% if (transporter == "MQTT") { %>
     "mqtt": "^2.16.0",
-    {{/if_eq}}
-    {{#if_eq transporter "AMQP"}}
+    <% } %>
+    <% if (transporter == "AMQP") { %>
     "amqplib": "^0.5.2",
-    {{/if_eq}}    
-    {{#if_eq transporter "STAN"}}
+    <% } %>
+    <% if (transporter == "STAN") { %>
     "node-nats-streaming": "0.0.28",
-    {{/if_eq}}    
-    {{#if_eq transporter "Kafka"}}
+    <% } %>
+    <% if (transporter == "Kafka") { %>
     "kafka-node": "2.4.1",
-    {{/if_eq}}    
-    {{#redis}}
+    <% } %>
+    <% if (redis) { %>
     "ioredis": "^3.2.2",
-    {{/redis}}
+    <% } %>
     "moleculer": "^0.12.0"
   },
   "engines": {
     "node": ">= 6.x.x"
-  }{{#jest}},
+  }<% if (jest) { %>,
   "jest": {
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
@@ -58,5 +58,5 @@
     "roots": [
       "../test"
     ]
-  }{{/jest}}
+  }<% } %>
 }

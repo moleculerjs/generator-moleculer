@@ -5,55 +5,55 @@ services:
   api:
     build:
       context: .
-    image: {{projectName}}
+    image: <%=projectName %>
     env_file: docker-compose.env
     environment:
       SERVICES: api
       PORT: 3000
-{{#hasDepends}}
+<% if (hasDepends) { %>
     links:
-{{/hasDepends}}
-{{#if_eq transporter "NATS"}}
+<% } %>
+<% if (transporter == "NATS") { %>
       - nats
-{{/if_eq}}      
-{{#redis}}
+<% } %>
+<% if (redis) { %>
       - redis
-{{/redis}}
-{{#if_eq transporter "MQTT"}}
+<% } %>
+<% if (transporter == "MQTT") { %>
       - mqtt
-{{/if_eq}}      
-{{#if_eq transporter "AMQP"}}
+<% } %>
+<% if (transporter == "AMQP") { %>
       - amqp
-{{/if_eq}}      
-{{#if_eq transporter "STAN"}}
+<% } %>
+<% if (transporter == "STAN") { %>
       - stan
-{{/if_eq}}      
-{{#if_eq transporter "Kafka"}}
+<% } %>
+<% if (transporter == "Kafka") { %>
       - zookeeper
-{{/if_eq}}  
-{{#hasDepends}}
+<% } %>
+<% if (hasDepends) { %>
     depends_on:
-{{/hasDepends}}
-{{#if_eq transporter "NATS"}}
+<% } %>
+<% if (transporter == "NATS") { %>
       - nats
-{{/if_eq}}      
-{{#redis}}
+<% } %>
+<% if (redis) { %>
       - redis
-{{/redis}}
-{{#if_eq transporter "MQTT"}}
+<% } %>
+<% if (transporter == "MQTT") { %>
       - mqtt
-{{/if_eq}}      
-{{#if_eq transporter "AMQP"}}
+<% } %>
+<% if (transporter == "AMQP") { %>
       - amqp
-{{/if_eq}}      
-{{#if_eq transporter "STAN"}}
+<% } %>
+<% if (transporter == "STAN") { %>
       - stan
-{{/if_eq}}      
-{{#if_eq transporter "Kafka"}}
+<% } %>
+<% if (transporter == "Kafka") { %>
       - zookeeper
-{{/if_eq}}      
+<% } %>
     labels:
-      - "traefik.enable=true"   
+      - "traefik.enable=true"
       - "traefik.backend=api"
       - "traefik.port=3000"
       - "traefik.frontend.entryPoints=http"
@@ -62,79 +62,79 @@ services:
   greeter:
     build:
       context: .
-    image: {{projectName}}
+    image: <%=projectName %>
     env_file: docker-compose.env
     environment:
       SERVICES: greeter
-{{#hasDepends}}
+<% if (hasDepends) { %>
     links:
-{{/hasDepends}}
-{{#if_eq transporter "NATS"}}
+<% } %>
+<% if (transporter == "NATS") { %>
       - nats
-{{/if_eq}}      
-{{#redis}}
+<% } %>
+<% if (redis) { %>
       - redis
-{{/redis}}
-{{#if_eq transporter "MQTT"}}
+<% } %>
+<% if (transporter == "MQTT") { %>
       - mqtt
-{{/if_eq}}      
-{{#if_eq transporter "AMQP"}}
+<% } %>
+<% if (transporter == "AMQP") { %>
       - amqp
-{{/if_eq}}      
-{{#if_eq transporter "STAN"}}
+<% } %>
+<% if (transporter == "STAN") { %>
       - stan
-{{/if_eq}}      
-{{#if_eq transporter "Kafka"}}
+<% } %>
+<% if (transporter == "Kafka") { %>
       - zookeeper
-{{/if_eq}}      
-{{#hasDepends}}
+<% } %>
+<% if (hasDepends) { %>
     depends_on:
-{{/hasDepends}}
-{{#if_eq transporter "NATS"}}
+<% } %>
+<% if (transporter == "NATS") { %>
       - nats
-{{/if_eq}}      
-{{#redis}}
+<% } %>
+<% if (redis) { %>
       - redis
-{{/redis}}
-{{#if_eq transporter "MQTT"}}
+<% } %>
+<% if (transporter == "MQTT") { %>
       - mqtt
-{{/if_eq}}      
-{{#if_eq transporter "AMQP"}}
+<% } %>
+<% if (transporter == "AMQP") { %>
       - amqp
-{{/if_eq}}      
-{{#if_eq transporter "STAN"}}
+<% } %>
+<% if (transporter == "STAN") { %>
       - stan
-{{/if_eq}}      
-{{#if_eq transporter "Kafka"}}
+<% } %>
+<% if (transporter == "Kafka") { %>
       - zookeeper
-{{/if_eq}}      
+<% } %>
 
-{{#if_eq transporter "NATS"}}
+<% if (transporter == "NATS") { %>
 
   nats:
     image: nats
-{{/if_eq}}      
-{{#redis}}
+<% } %>
+<% if (redis) { %>
 
   redis:
     image: redis:alpine
-{{/redis}}
-{{#if_eq transporter "MQTT"}}
-    
+<% } %>
+<% if (transporter == "MQTT") { %>
+
   mqtt:
     image: ncarlier/mqtt
-{{/if_eq}}      
-{{#if_eq transporter "AMQP"}}
+<% } %>
+<% if (transporter == "AMQP") { %>
 
   rabbit:
     image: rabbitmq:3
-{{/if_eq}}      
-{{#if_eq transporter "STAN"}}
+<% } %>
+<% if (transporter == "STAN") { %>
 
   stan:
     image: nats-streaming
-{{/if_eq}}      
-{{#if_eq transporter "Kafka"}}
+<% } %>
+<% if (transporter == "Kafka") { %>
 
   zookeeper:
     image: bitnami/zookeeper
@@ -145,7 +145,7 @@ services:
     environment:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-{{/if_eq}}      
+<% } %>
 
   traefik:
     image: traefik
