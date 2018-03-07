@@ -5,53 +5,53 @@ services:
   api:
     build:
       context: .
-    image: <%=projectName %>
+    image: <%=projectName -%>
     env_file: docker-compose.env
     environment:
       SERVICES: api
       PORT: 3000
-<% if (hasDepends) { %>
+<% if (hasDepends) { -%>
     links:
-<% } %>
-<% if (transporter == "NATS") { %>
+<% } -%>
+<% if (transporter == "NATS") { -%>
       - nats
-<% } %>
-<% if (redis) { %>
+<% } -%>
+<% if (redis) { -%>
       - redis
-<% } %>
-<% if (transporter == "MQTT") { %>
+<% } -%>
+<% if (transporter == "MQTT") { -%>
       - mqtt
-<% } %>
-<% if (transporter == "AMQP") { %>
+<% } -%>
+<% if (transporter == "AMQP") { -%>
       - amqp
-<% } %>
-<% if (transporter == "STAN") { %>
+<% } -%>
+<% if (transporter == "STAN") { -%>
       - stan
-<% } %>
-<% if (transporter == "Kafka") { %>
+<% } -%>
+<% if (transporter == "Kafka") { -%>
       - zookeeper
-<% } %>
-<% if (hasDepends) { %>
+<% } -%>
+<% if (hasDepends) { -%>
     depends_on:
-<% } %>
-<% if (transporter == "NATS") { %>
+<% } -%>
+<% if (transporter == "NATS") { -%>
       - nats
-<% } %>
-<% if (redis) { %>
+<% } -%>
+<% if (redis) { -%>
       - redis
-<% } %>
-<% if (transporter == "MQTT") { %>
+<% } -%>
+<% if (transporter == "MQTT") { -%>
       - mqtt
-<% } %>
-<% if (transporter == "AMQP") { %>
+<% } -%>
+<% if (transporter == "AMQP") { -%>
       - amqp
-<% } %>
-<% if (transporter == "STAN") { %>
+<% } -%>
+<% if (transporter == "STAN") { -%>
       - stan
-<% } %>
-<% if (transporter == "Kafka") { %>
+<% } -%>
+<% if (transporter == "Kafka") { -%>
       - zookeeper
-<% } %>
+<% } -%>
     labels:
       - "traefik.enable=true"
       - "traefik.backend=api"
@@ -62,79 +62,79 @@ services:
   greeter:
     build:
       context: .
-    image: <%=projectName %>
+    image: <%=projectName -%>
     env_file: docker-compose.env
     environment:
       SERVICES: greeter
-<% if (hasDepends) { %>
+<% if (hasDepends) { -%>
     links:
-<% } %>
-<% if (transporter == "NATS") { %>
+<% } -%>
+<% if (transporter == "NATS") { -%>
       - nats
-<% } %>
-<% if (redis) { %>
+<% } -%>
+<% if (redis) { -%>
       - redis
-<% } %>
-<% if (transporter == "MQTT") { %>
+<% } -%>
+<% if (transporter == "MQTT") { -%>
       - mqtt
-<% } %>
-<% if (transporter == "AMQP") { %>
+<% } -%>
+<% if (transporter == "AMQP") { -%>
       - amqp
-<% } %>
-<% if (transporter == "STAN") { %>
+<% } -%>
+<% if (transporter == "STAN") { -%>
       - stan
-<% } %>
-<% if (transporter == "Kafka") { %>
+<% } -%>
+<% if (transporter == "Kafka") { -%>
       - zookeeper
-<% } %>
-<% if (hasDepends) { %>
+<% } -%>
+<% if (hasDepends) { -%>
     depends_on:
-<% } %>
-<% if (transporter == "NATS") { %>
+<% } -%>
+<% if (transporter == "NATS") { -%>
       - nats
-<% } %>
-<% if (redis) { %>
+<% } -%>
+<% if (redis) { -%>
       - redis
-<% } %>
-<% if (transporter == "MQTT") { %>
+<% } -%>
+<% if (transporter == "MQTT") { -%>
       - mqtt
-<% } %>
-<% if (transporter == "AMQP") { %>
+<% } -%>
+<% if (transporter == "AMQP") { -%>
       - amqp
-<% } %>
-<% if (transporter == "STAN") { %>
+<% } -%>
+<% if (transporter == "STAN") { -%>
       - stan
-<% } %>
-<% if (transporter == "Kafka") { %>
+<% } -%>
+<% if (transporter == "Kafka") { -%>
       - zookeeper
-<% } %>
+<% } -%>
 
-<% if (transporter == "NATS") { %>
+<% if (transporter == "NATS") { -%>
 
   nats:
     image: nats
-<% } %>
-<% if (redis) { %>
+<% } -%>
+<% if (redis) { -%>
 
   redis:
     image: redis:alpine
-<% } %>
-<% if (transporter == "MQTT") { %>
+<% } -%>
+<% if (transporter == "MQTT") { -%>
 
   mqtt:
     image: ncarlier/mqtt
-<% } %>
-<% if (transporter == "AMQP") { %>
+<% } -%>
+<% if (transporter == "AMQP") { -%>
 
   rabbit:
     image: rabbitmq:3
-<% } %>
-<% if (transporter == "STAN") { %>
+<% } -%>
+<% if (transporter == "STAN") { -%>
 
   stan:
     image: nats-streaming
-<% } %>
-<% if (transporter == "Kafka") { %>
+<% } -%>
+<% if (transporter == "Kafka") { -%>
 
   zookeeper:
     image: bitnami/zookeeper
@@ -145,7 +145,7 @@ services:
     environment:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-<% } %>
+<% } -%>
 
   traefik:
     image: traefik

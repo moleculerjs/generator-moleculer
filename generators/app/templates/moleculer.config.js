@@ -7,14 +7,14 @@ module.exports = {
 	logger: true,
 	logLevel: "info",
 	logFormatter: "default",
-	<% if (needTransporter) { %>
+<% if (needTransporter) { -%>
 
-	transporter: "{{transporter}}",
-	<% } %>
-	<% if (needCacher) { %>
+	transporter: "<%=transporter -%>",
+<% } -%>
+<% if (needCacher) { -%>
 
-	cacher: "{{cacher}}",
-	<% } %>
+	cacher: "<%=cacher -%>",
+<% } -%>
 
 	serializer: "JSON",
 

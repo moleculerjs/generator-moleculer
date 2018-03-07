@@ -20,7 +20,7 @@ module.exports = class extends Generator {
       desc: 'Name of application'
     });
 
-    this.option('install', { required: false, type: Boolean, default: false });
+    this.option('skip-install', { required: false, type: Boolean, default: false });
 
     // And you can then access it later; e.g.
     // this.log(this.options.appname);
@@ -91,6 +91,10 @@ module.exports = class extends Generator {
   // }
 
   install() {
-    if (this.options.install) this.installDependencies({ bower: false, npm: true });
+    if (!this.options['skip-install']) this.installDependencies({ bower: false, npm: true });
+  }
+
+  end() {
+    this.log(yosay(`Project ${chalk.red(this.props.projectName)} is done!`));
   }
 };

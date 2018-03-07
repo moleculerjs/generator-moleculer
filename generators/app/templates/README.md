@@ -1,6 +1,6 @@
 [![Moleculer](https://img.shields.io/badge/Powered%20by-Moleculer-green.svg?colorB=0e83cd)](https://moleculer.services)
 
-# <%=projectName %>
+# <%=projectName -%>
 
 ## Build Setup
 
@@ -13,25 +13,25 @@ npm run dev
 
 # Start production
 npm start
-<% if (jest) { %>
+<% if (jest) { -%>
 
 # Run unit tests
 npm test
 
 # Run continuous test mode
 npm run ci
-<% } %>
-<% if (lint) { %>
+<% } -%>
+<% if (lint) { -%>
 
 # Run ESLint
 npm run lint
-<% } %>
+<% } -%>
 ```
 
-<% if (docker) { %>
+<% if (docker) { -%>
 ## Run in Docker
 
 ```bash
 $ docker-compose up -d --build
 ```
-<% } %>
+<% } -%>
