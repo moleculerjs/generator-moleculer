@@ -5,7 +5,7 @@ services:
   api:
     build:
       context: .
-    image: <%=projectName -%>
+    image: <%=projectName %>
     env_file: docker-compose.env
     environment:
       SERVICES: api
@@ -62,7 +62,7 @@ services:
   greeter:
     build:
       context: .
-    image: <%=projectName -%>
+    image: <%=projectName %>
     env_file: docker-compose.env
     environment:
       SERVICES: greeter

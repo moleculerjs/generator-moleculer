@@ -35,7 +35,8 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       props.redis = props.cacher === 'Redis' || props.transporter === 'Redis';
-      props.hasDepends = props.needCacher || (props.needTransporter && props.transporter !== 'TCP');
+      props.hasDepends =
+        (props.needCacher && props.cacher !== 'Memory') || (props.needTransporter && props.transporter !== 'TCP');
       props.year = new Date().getFullYear();
       props.projectName = this.options.appname;
 
@@ -67,7 +68,8 @@ module.exports = class extends Generator {
         // This.log(`Copy '${file}' to '${this.destinationPath(relPath)}'`);
         this.fs.copyTpl(file, this.destinationPath(relPath), this.props);
       } else {
-        // This.log(`Skip '${file}'`);
+        // This.log(`Copy '${file}'`);
+        this.fs.copy(file, this.destinationPath(relPath), this.props);
       }
     });
   }
